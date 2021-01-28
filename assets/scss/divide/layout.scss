@@ -1,0 +1,90 @@
+.fb {
+    #__nuxt,
+    #__layout {
+        width: 100%;
+        height: 100%;
+    }
+
+    &__layout {
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    &__footer {
+        display: block;
+        height: vw(120px);
+        padding: 0 0 calc(constant(safe-area-inset-bottom));
+        padding: 0 0 calc(env(safe-area-inset-bottom));
+
+
+        &.open {
+            .fb {
+                &__footer__menu {
+                    background-image: url("../images/common/btn-close-wt.png");
+                }
+
+                &__menuLayer {
+                    top: 0;
+                    transition: all ease-in-out 0.5s;
+                }
+            }            
+        }
+
+        &__inner {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            z-index: 5;
+            height: vw(120px);
+            text-align: center;
+        }
+
+        &__menu {
+          
+            display: inline-block;
+            width: vw(100px);
+            height: vw(100px);
+            border-radius: 50%;
+            background: rgba(0,0,0, 0.5) url("../images/common/btn-menu-wt.png") no-repeat center center / vw(40px 40px);
+            font-size: 0;
+        }
+    }
+
+    &__menuLayer {
+        position: fixed;
+        // bottom: -100%;
+        top: 100%;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 100%;
+        height: 100%;//calc(100% - 16vw);
+        background: #fff;//rgba(0, 0, 0, 0.7);
+        z-index: 4;
+        transition: top ease-in-out 0.5s;
+
+        .menu {
+            &__wrapper{
+
+            }
+
+            &__each {
+                display: block;
+                width: 100%;
+                padding: 50px 0;
+                text-align: center;
+                background: #eeeeee;
+                color: #666;
+                font-size: 30px;
+                font-weight: 600;
+
+                &:nth-child(2n) {
+                    background: #999;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}

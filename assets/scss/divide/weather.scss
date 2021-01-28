@@ -1,0 +1,312 @@
+.fb {
+    &__loading {
+        margin-top: vw(100px);
+        text-align: center;
+
+        * {
+            display: block;
+            background: #fff;
+            margin: 0 auto;
+        }
+
+        .fb__weather__loc {
+            width: 50%;
+            height: vw(40px);
+            margin-bottom: vw(10px);
+        }
+
+        .fb__weather__desc {
+            width: 40%;
+            height: vw(30px);
+            margin-bottom: vw(30px);
+        }
+
+        .fb__weather__icon {
+            width: vw(200px);
+            height: vw(180px);
+            margin-bottom: vw(20px);
+        }
+
+        .fb__weather__temp {
+            width: vw(120px);
+            height: vw(100px);
+            margin-bottom: vw(20px);
+        }
+    }
+
+    &__weather {
+        position: relative;
+        // width: 100%;
+        // height: 100%;
+        // background: {
+        //     color: #ccc;
+        //     repeat: no-repeat;
+        //     position: 0 center;
+        //     size: 100% auto;
+        // }
+        color: #fff;
+        
+        &__unit {
+            font-size: 0;
+
+            &:after {
+                display: inline-block;
+                font-size: vw(20px);
+                margin-left: vw(5px);
+                content: "˚";
+            }
+        }
+
+        &__gps {
+            position: absolute; 
+            top: vw(45px);
+            left: vw(50px);
+            background: none;            
+            border: none;
+            padding-left: vw(60px);
+            color: #fff;
+            font-size: vw(24px);
+            line-height: vw(50px);
+
+            &:before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: vw(50px);
+                height: vw(50px);
+                background: url("../images/common/icon-gps-wt.png") no-repeat 0 0 / vw(100% auto);
+            }
+            
+        }
+
+        &__search {
+            position: absolute;
+            top: vw(30px);
+            right: vw(50px);
+            padding: vw(4px 0);
+            border: none;
+            // border-radius: vw(30px);
+
+            &.show {
+                border-bottom: 1px solid #ddd;
+
+                input {
+                    width: vw(300px);
+                    transition: width ease-in-out 0.6s;
+                }
+
+            }
+
+            input {
+                appearance: none;
+                background: none;
+                color: #fff;
+                border: none;
+                width: 0;
+                font-size: vw(24px);
+                vertical-align: middle;
+                &::placeholder {
+                    color: #fff;
+                }
+            }
+
+            button {
+                display: inline-block;
+                width: vw(35px);
+                height: vw(35px);
+                margin-left: vw(20px);
+                background: url("../images/common/btn-search-wt.png") no-repeat 0 0 / vw(100% auto);
+                border: none;
+                font-size: 0;
+                vertical-align: middle;
+            }
+        }
+
+        &__bg { 
+            position: absolute;
+            top: 50%;
+            left: 0;
+            z-index: -1;
+            margin: auto;
+            transform: translate(0,-50%);
+
+            img {
+                max-width: 100%;
+                opacity: 0.6;
+            }
+        }
+
+        &__cont {
+            // overflow-y: auto;
+            // overflow-x: hidden;
+            // position: absolute;
+            // width: 100%;
+            // height: 100%;
+            @extend %clear;
+        }
+
+        &__summary {
+            // float: left;
+            // width: 100%;
+            // height: 50%;
+            margin: vw(0 auto 80px);
+            padding: vw(150px 0 0);
+            text-align: center;
+        }
+
+        &__loc {
+            display: block;
+            padding: vw(14px 0);
+            font-weight: bold;
+            font-size: vw(40px);
+        }
+
+        &__desc {
+            color: #f8f8f8;
+            font-size: vw(24px);
+        }
+
+        &__temp {
+            display: block;
+            font-size: vw(60px);
+            line-height: 1;
+
+            em {
+                margin-right: vw(5px);
+                font-weight: normal;
+                font-size: vw(100px);
+                vertical-align: middle;
+            }   
+        }
+
+        &__icon {
+            display: block;
+            position: relative;
+            margin: vw(0 auto);
+            text-align: center;
+
+            img {
+                display: inline-block;
+                width: vw(160px);
+                height: auto;
+            }
+        }
+
+        &__detail {
+            // float: left;
+            // width: 100%;
+            // height: 50%;
+            margin: vw(0 auto);
+        }
+
+        //과거
+        &__past {
+            margin: vw(20px -10px 0);
+            font-size: vw(30px);
+            
+            .past {
+                &__desc {
+                    display: inline-block;
+                    margin: vw(0 10px);
+                }
+
+                &__icon {
+                    width: vw(60px);
+                    height: vw(60px);
+                    margin: vw(0 -5px);
+                }
+
+                &__yesterday {
+                    font-size: vw(25px);
+                }
+            }            
+        }
+
+        //시간별
+        &__hourly {
+            overflow-y: hidden;
+            overflow-x: auto;
+            width: 100%;
+            // margin: vw(50px -20px);
+            padding-bottom: vw(30px);
+            white-space: nowrap;
+
+            .hourly {
+                &__each {
+                    display: inline-block;
+                    margin: vw(0 20px);
+                    text-align: center;
+                }
+                
+                &__time {
+                    font-weight: lighter;
+                    font-size: vw(24px);
+                }
+
+                &__icon {
+                    overflow: hidden;
+                    position: relative;
+                    width: vw(100px);
+                    height: vw(100px);
+
+                    img {
+                        @extend %imageResize;
+                    }
+
+                }
+            }
+        }
+
+        //날짜별
+        &__daily {
+            margin-top: vw(50px);
+
+            .daily {
+                &__list {
+                    display: flex;
+                    flex-wrap: nowrap;
+                    align-items: center;
+                    margin-bottom: vw(30px);
+                    padding: vw(0 50px 0 20px);
+                    font-size: vw(30px);
+                    text-align: center;
+                }
+
+                &__time {
+                    width: 30%;
+                }
+
+                &__icon {
+                    position: relative;
+                    width: 55%;                
+                    img {
+                        display: inline-block;
+                        width: vw(70px);
+                        height: vw(70px);
+                        // @extend %imageResize;
+                    }
+                }
+
+                &__temp {
+                    width: 25%;
+
+                    &--max {
+                        display: inline-block;
+                        width: vw(50px);
+                        text-align: center;
+                        font-size: vw(27px);
+                        margin-right: vw(20px);
+                    }
+
+                    &--min {
+                        display: inline-block;
+                        opacity: 0.7;
+                        width: vw(50px);
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}
