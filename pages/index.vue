@@ -1,6 +1,6 @@
 
 <template>
-    <main class="fb__weather">
+    <section class="fb__weather">
         <h2 class="fb__title--hidden">날씨 확인</h2>
 
         <!-- 로딩 -->
@@ -19,7 +19,8 @@
                 <button class="fb__weather__gps" @click="requestCurrentPosition()">현재위치</button>
 
                 <nav class="fb__weather__search" :class="isVisibleSearch ? 'show' : ''" @click="isVisibleSearch = true">
-                    <input type="text" placeholder="위치를 입력해주세요" v-model.trim="searchLocation"  @keyup.enter="searchWeather()" :autofocus="isVisibleSearch ? true : false">
+                    <!--  :autofocus="isVisibleSearch ? true : false" -->
+                    <input type="text" placeholder="위치를 입력해주세요" v-model.trim="searchLocation"  @keyup.enter="searchWeather()">
                     <button @click="searchWeather()">도시찾기</button>
                 </nav>
             </header>
@@ -111,7 +112,7 @@
         <section v-else-if="'error' === fetches.loading">
             오류가 발생하였습니다.
         </section>
-    </main>
+    </section>
 </template>
 
 <script>
@@ -191,76 +192,29 @@
         },
 
         mounted(){
-            this.requestCurrentPosition();
+           this.requestCurrentPosition();
         },
 
         methods: {
-            requestApi (object) {
-                if (!object.url) return ;
-                
-                return new Promise((resolve, reject) => {
-                    try {
-                        $.ajax({
-                            type: object.type ? object.type : "POST",
-                            url: object.url,
-                            data: object.data ? object.data : "",
-                            success (result) {
-                                resolve(result);
-                            },
-                
-                            error(error) {
-                                reject(error)
-                            }
-                        });
+            async requestCurrentPosition () {
+                const response = await this.geoLocation();
+                const coords = response.coords;
+                if (coords) {
+                    this.position = {
+                        lat: coords.latitude,
+                        lon: coords.longitude,
                     }
-                
-                    catch(error) {
-                        reject(error)
-                    }
-                })
-            },
-
-            //현재위치 알아오기
-            requestCurrentPosition() {
-                const _this = this;
-                if (window.navigator.geolocation) { // GPS를 지원하면
-
-                    // 현재 위치 정보를 가져온다.
-                    // navigator.geolocation.getCurrentPosition(성공콜백, 에러콜백, 옵션);
-                    window.navigator.geolocation.getCurrentPosition(
-                        function(position) {
-                            const coords = position.coords;
-                    
-                            _this.position = {
-                                lat: coords.latitude,
-                                lon: coords.longitude,
-                            }
-
-                            _this.currentGPS = _this.position;
-                            _this.afterRequestPosition();
-
-                        },
-                        function(error) {
-                            alert("위치 허용을 해주셔야 정확한 날씨정보를 사용하실 수 있습니다.")
-
-                            _this.position = {
-                                lat: 36.532987599245075,
-                                lon: 127.2553285580849,
-                            }
-
-                            _this.currentGPS = _this.position;
-                            _this.afterRequestPosition();
-                        }, 
-                        {
-                            enableHighAccuracy: false,
-                            maximumAge: 0,
-                            timeout: Infinity
-                        }
-                    );
-
-                } else {
-                    alert("GPS를 지원하지 않습니다<br>");
                 }
+                else {
+                    this.position = {
+                        lat: 36.532987599245075,
+                        lon: 127.2553285580849,
+                    }
+
+                    console.error(response);
+                }
+
+                this.afterRequestPosition();
             },
 
             //검색하기
@@ -290,11 +244,6 @@
                         alert("주소가 정확하지 않습니다. 다시 입력하여주세요. \nex) 성포동 / 제주도 / 서울시");
                     }
                 });    
-            },
-
-            backToCurrentGps() {
-                this.position = this.currentGPS;
-                this.afterRequestPosition();
             },
 
             //공통 이벤트
@@ -352,12 +301,13 @@
                         this.current.temp = this.mathFloorTemp(this.current.temp);
 
                         this.hourly = response.hourly;
-                        this.hourly = this.hourly.splice(0, 12);
+                        this.hourly = this.hourly.splice(0, 24);
 
                         this.daily = response.daily;
                         this.today = this.daily.shift();
 
                         const _backgrond = this.current.weather[0].main; 
+
                         $(".fb").css({ 
                             "background": this.weatherBackground[_backgrond]
                         })
@@ -389,27 +339,11 @@
                     if (response) {
                         this.yesterday = response.current;
                         this.fetches.yesterday = true;
-                        // this.$set(this.yesterday, "temp", Math.floor(response.current.temp))
-                        // this.$set(this.yesterday, "feelsLike", Math.floor(response.current.feels_like))
                     }
                 }
 
                 catch {
                     console.error("requestPastWeather has exception...")
-                }
-            },
-
-            //그리기
-            drawResult(response) {
-                const _current = response.current;
-                this.current = _current;
-                
-                if (_current) {
-                    const _backgrond = _current.weather[0].main; 
-                    // this.$set(this.current, "weatherBackground", this.weatherBackground[_backgrond])
-                    // this.$set(this.current, "description", _current.weather[0].description)
-                    // this.$set(this.current, "temp", Math.floor(_current.temp))
-                    // this.$set(this.current, "weatherIcon", `https://openweathermap.org/img/wn/${_current.weather[0].icon}@2x.png`)
                 }
             },
 
@@ -428,6 +362,3 @@
         }
     }
 </script>
-
-<style lang="scss" scope>
-</style>

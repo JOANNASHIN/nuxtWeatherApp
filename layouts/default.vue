@@ -1,9 +1,9 @@
 <template>
-    <div class="fb__layout">
+    <main class="fb__layout">
         <Header></Header>
         <Nuxt></Nuxt>
         <Footer></Footer>
-    </div>
+    </main>
 </template>
 
 <style>

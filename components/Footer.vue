@@ -7,6 +7,11 @@
           <h2 class="fb__title--hidden">햄버거메뉴레이어</h2>
           <ul class="menu__wrapper">
               <li class="menu__each">
+                  <a href="/">
+                      날씨보기
+                  </a>
+              </li>
+              <li class="menu__each">
                   <a href="/map">
                       지도로 보기
                   </a>

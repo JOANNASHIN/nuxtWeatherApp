@@ -1,23 +1,3 @@
-// import Vuex from "vuex";
-
-// const store = () => new Vuex.Store({
-//     state: {
-//         counter: 0
-//     },
-
-//     mutations: {
-//         increment: (state) => {
-//             state.counter++;
-//         }
-//     }
-// })
-
-// export default store;
-
-import Vue from "vue";
-import globalTest from "~/mixin.js/global.js";
-Vue.mixin(globalTest);
-
 export const state = () => ({
     userName: 'default'
   })

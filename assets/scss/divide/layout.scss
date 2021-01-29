@@ -73,11 +73,11 @@
             &__each {
                 display: block;
                 width: 100%;
-                padding: 50px 0;
+                padding: vw(50px 0);
                 text-align: center;
                 background: #eeeeee;
                 color: #666;
-                font-size: 30px;
+                font-size: vw(30px);
                 font-weight: 600;
 
                 &:nth-child(2n) {

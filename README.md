@@ -18,8 +18,3 @@ $ npm run generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
-
-
-
-**firebase 사용방법
-npm run generate > firebase deploy
