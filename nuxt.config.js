@@ -67,6 +67,6 @@ export default {
     
   },
 //   //빌드되는 파일 이름 지정
-//   buildDir: "dist",
+  buildDir: "public",
 
 }

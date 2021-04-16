@@ -12,7 +12,8 @@
             }
         },
         created() {
-             if (process.client) {
+            if (process.client) {
+                
             }
         },
         mounted() {
