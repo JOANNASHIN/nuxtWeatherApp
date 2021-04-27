@@ -1,44 +1,40 @@
 export default {
     asyncData(context) {
-        return context.$axios
-        .get('http://jsonplaceholder.typicode.com/posts/1')
-        .then((res) => {
-            return { 
-                fetchedData: res.data,
-                testtest: "testtesttesttesttesttest"
-            }
-        })
+        // return context.$axios
+        //             .get('http://jsonplaceholder.typicode.com/posts/1')
+        //             .then(res => {
+        //                 return { 
+        //                     fetchedData: res.data
+        //                 }
+        //             })
     },
+
     head() {
         return {
-        title: "공통타이틀123",
-        meta: [
-            {
-                hid: 'description',
-                name: 'description',
-                content: this.testtest
-            },
-            {
-                hid: 'jieun',
-                name: 'jieun',
-                content: "지은지은지은"
-            }
-        ]
+            title: "account App",
+            meta: [
+                {
+                    hid: "description",
+                    name: "description",
+                    content: "가계부 앱 포트폴리오 어플리케이션"
+                },
+            ]
         }
     },
+
     data() {
         return {
-            test: "joshua"
+            
         }
     },
 
     created() {
         if (process.server) {
-            console.log("글로벌~서버사이드 렌더링 seo")
+            console.log("서버사이드 렌더링중")
         }
     },
 
     methods: {
-     
+        
     }
 }

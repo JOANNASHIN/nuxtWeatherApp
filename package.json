@@ -1,5 +1,5 @@
 {
-  "name": "nuxtApplication",
+  "name": "accountApp",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -19,6 +19,7 @@
     "nuxt": "^2.14.12",
     "sass": "^1.32.5",
     "sass-loader": "^10.1.1",
+    "v-calendar": "^2.3.0",
     "vue-daum-map": "^1.0.15",
     "xml-js": "^1.6.11"
   },

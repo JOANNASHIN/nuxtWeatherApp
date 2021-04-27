@@ -118,7 +118,6 @@
 <script>
     import $ from "jquery";
     import moment from "moment";
-    import convert from "xml-js";
     //  window.moment = moment;
 
     moment.lang('ko', {
@@ -309,7 +308,7 @@
                         const _backgrond = this.current.weather[0].main; 
 
                         $(".fb").css({ 
-                            "background": this.weatherBackground[_backgrond]
+                            "background": this.weatherBackground[_backgrond] ? this.weatherBackground[_backgrond] : "#666"
                         })
                     }            
 
