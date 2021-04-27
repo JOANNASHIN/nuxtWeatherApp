@@ -144,7 +144,7 @@
                 const container = document.getElementById('map');
                 const options = {
                     center: new kakao.maps.LatLng(position.lat, position.lon),
-                    level: 12
+                    level: 13
                 };
 
                 const map = new kakao.maps.Map(container, options);

@@ -16,11 +16,11 @@
                       지도로 보기
                   </a>
               </li>
-              <li class="menu__each">
+              <!-- <li class="menu__each">
                   <a href="/pollution">
                     미세먼지 확인하기
                   </a>
-              </li>
+              </li> -->
           </ul>
       </aside>
   </footer>

@@ -11,12 +11,12 @@ export default {
 
     head() {
         return {
-            title: "account App",
+            title: "weatherApp",
             meta: [
                 {
                     hid: "description",
                     name: "description",
-                    content: "가계부 앱 포트폴리오 어플리케이션"
+                    content: "날씨확인 앱 포트폴리오 어플리케이션"
                 },
             ]
         }
