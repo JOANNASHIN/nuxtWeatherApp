@@ -45,7 +45,7 @@ const mixin = {
         
                             },
                             function(error) {
-                                alert("위치 허용을 해주셔야 정확한 날씨정보를 사용하실 수 있습니다.")
+                                alert("브라우저 설정에서 위치 허용을 해주셔야 정확한 날씨정보를 사용하실 수 있습니다.")
                                 resolve(error)
                             }, 
                             {
